@@ -1,0 +1,92 @@
+/* Основные стили */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #1c1c3f, #3e3e78);
+    background-size: 400% 400%;
+    animation: gradient-animation 20s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    color: #ffffff;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Анимация градиента */
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 25px;
+    color: #ffffff;
+    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, color 0.3s;
+}
+
+h1:hover {
+    transform: scale(1.05);
+    color: #ffcc00;
+}
+
+/* Поля ввода */
+input[type="email"] {
+    width: calc(100% - 24px);
+    padding: 14px;
+    margin: 14px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    border: 2px solid #333;
+    border-radius: 10px;
+    box-shadow: inset 0px 1px 15px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="email"]:hover,
+input[type="email"]:focus {
+    border-color: #ffcc00;
+    box-shadow: 0px 0px 10px rgba(255, 204, 0, 0.5);
+}
+
+/* Кнопка регистрации */
+button {
+    padding: 14px 30px;
+    margin-top: 20px;
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 15px rgba(255, 204, 0, 0.5);
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0px 8px 20px rgba(255, 204, 0, 0.7);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(128, 0, 128, 0.5);
+}
+
+/* Ошибки */
+.error {
+    color: red;
+    margin-top: 15px;
+    display: none;
+}

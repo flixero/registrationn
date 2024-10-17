@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-lines"></div>
+    <div class="background-stripes"></div>
+    <div class="background-circle circle1"></div>
+    <div class="background-circle circle2"></div>
+    <div class="background-circle circle3"></div>
+
+    <div class="login-container">
+        <h1>Register with Your Email</h1>
+
+        <form id="registrationForm" action="http://127.0.0.1:5000/register" method="POST">
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <button type="submit">Register</button>
+            <div id="error-message" class="error"></div>
+        </form>
+    </div>
+
+    <script>
+        const registrationForm = document.getElementById('registrationForm');
+        const emailInput = document.getElementById('email');
+        const errorMessage = document.getElementById('error-message');
+
+        registrationForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = emailInput.value.trim();
+
+            if (email === '') {
+                errorMessage.textContent = 'Please enter your email address.';
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+
+                // Отправка данных на сервер через Fetch API
+                fetch('http://127.0.0.1:5000/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        'email': email
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === 'Регистрация успешна') {
+                        alert('Registration successful!');
+                    } else {
+                        errorMessage.textContent = data.message;
+                        errorMessage.style.display = 'block';
+                    }
+                })
+                .catch(error => {
+                    errorMessage.textContent = 'Ошибка регистрации. Попробуйте позже.';
+                    errorMessage.style.display = 'block';
+                    console.error('Error:', error);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
